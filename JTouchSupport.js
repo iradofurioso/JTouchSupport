@@ -1,6 +1,6 @@
 
 TouchSupport = function() {
-	
+	 
 	this.clientBrowser	= navigator.userAgent;
 	
 	this.iDevice		= this.clientBrowser.match(/(iPhone|iPad|iPod)/); 
