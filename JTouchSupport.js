@@ -1,10 +1,10 @@
 
-TouchSupport = function() {
+JTouchSupport = function() {
 	 
 	this.clientBrowser	= navigator.userAgent;
 	
 	this.iDevice		= this.clientBrowser.match(/(iPhone|iPad|iPod)/); 
-	this.bbDevice		= this.clientBrowser.match(/BlackBerry/);
+	this.bbDevice		= this.clientBrowser.match(/BlackBerry|PlayBook/);
 	this.droidDevice	= this.clientBrowser.match(/Android/); 
 	
 	
@@ -42,11 +42,10 @@ TouchSupport = function() {
 			if(this.iDevice) {
 				return event.targetTouches[0].pageX;
 			} else if (this.bbDevice) {
-				// blackberry
+				return event.targetTouches[0].pageX;
 			} else if (this.droidDevice) {
 				// android
 			}
-			
 		} else {
 			if(this.isIE()) {
 				return window.event.clientX;
@@ -60,7 +59,13 @@ TouchSupport = function() {
 	
 	this.getY = function(event) {	
 		if( this.isTouchDevice() ) {
-			return event.targetTouches[0].pageY;
+			if(this.iDevice) {
+				return event.targetTouches[0].pageY;
+			} else if (this.bbDevice) {
+				return event.targetTouches[0].pageY;
+			} else if (this.droidDevice) {
+				// android
+			}
 		} else {
 			if(this.isIE()) {
 				return window.event.clientY;
